@@ -1,0 +1,233 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>搭建带有CDN加速的免费图床 | Gridea</title>
+<link rel="shortcut icon" href="https://434308421.github.io//favicon.ico?v=1589904460098">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://434308421.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="搭建带有CDN加速的免费图床 | Gridea - Atom Feed" href="https://434308421.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="搭建一个自己的免费图床工具
+##本文用到的工具或网站
+PicGo
+jsdelivr
+github
+1.下载PicGo
+首先进入PicGo的下载地址 选择最新版本下载，根据自己的系统下载对应的安装包，我这里是Windows
+PicGo的下载地..." />
+    <meta name="keywords" content="图床" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://434308421.github.io/">
+  <img class="avatar" src="https://434308421.github.io//images/avatar.png?v=1589904460098" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              搭建带有CDN加速的免费图床
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-05-20
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://434308421.github.io/tag/oCn0HLPy7/" class="post-tag">
+                  # 图床
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://434308421.github.io//post-images/da-jian-dai-you-cdn-jia-su-de-mian-fei-tu-chuang.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="搭建一个自己的免费图床工具">搭建一个自己的免费图床工具</h1>
+<p>##本文用到的工具或网站</p>
+<p>PicGo</p>
+<p>jsdelivr</p>
+<p>github</p>
+<h3 id="1下载picgo">1.下载PicGo</h3>
+<p>首先进入PicGo的下载地址 选择最新版本下载，根据自己的系统下载对应的安装包，我这里是Windows</p>
+<p><a href="https://github.com/Molunerfinn/PicGo/releases">PicGo的下载地址</a></p>
+<h3 id="2创建仓库">2.创建仓库</h3>
+<p>首先创建一个github仓库，名字可以随便取，然后勾选README初始化仓库</p>
+<h3 id="3生成token">3.生成token</h3>
+<p>【进入github】-【点击头像】-【settings】-【developer settings】-【Personal access tokens】</p>
+<p>点击【Generate new token】</p>
+<p>自定义一个名字，然后勾选【repo】最后点绿色按钮创建即可</p>
+<p>请复制你的token，它只显示一次，请妥善保管</p>
+<h3 id="4配置github图床">4.配置github图床</h3>
+<p>先打开你安装好的picgo然后左栏依次选择【图床设置】-【github图床】</p>
+<blockquote>
+<p>如果你打开picgo时没有直接出来界面，它可能藏在你的托盘图标处</p>
+</blockquote>
+<p>仓库名格式是你的用户名/仓库名<br>
+分支是master<br>
+token填我们刚刚生成的<br>
+存储路径可以填也可以不填，如果你填了img/，它就会上传到你仓库的img目录下<br>
+自定义域名的格式：https://cdn.jsdelivr.net/gh/用户名/仓库名<br>
+最后记得确定保存</p>
+<h3 id="5配合jsdelivr使用">5.配合jsdelivr使用</h3>
+<blockquote>
+<p>链接格式：https://cdn.jsdelivr.net/gh/你的用户名/仓库名/文件路径</p>
+</blockquote>
+<blockquote>
+<p>例如：https://cdn.jsdelivr.net/gh/kjhuanhao/testcdn/1.png</p>
+</blockquote>
+<p>我们在上传的时候会自动复制这个格式的链接，大家可以可以直接复制查看</p>
+<p>然后你就可以通过这个链接访问你的图片了</p>
+<blockquote>
+<p>引自：<a href="https://mrhuanhao.cn/2020/03/23/picgo/">Huanhao's Blog</a></p>
+</blockquote>
+<blockquote>
+<p>待参考：<a href="https://mrhuanhao.cn/2020/03/28/solvepicnet/">Huanhao's Blog</a></p>
+</blockquote>
+<blockquote>
+<p>鸣谢：<a href="https://mrhuanhao.cn/">Huanhao's Blog</a></p>
+</blockquote>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A%E5%B7%A5%E5%85%B7">搭建一个自己的免费图床工具</a><br>
+*
+<ul>
+<li><a href="#1%E4%B8%8B%E8%BD%BDpicgo">1.下载PicGo</a></li>
+<li><a href="#2%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93">2.创建仓库</a></li>
+<li><a href="#3%E7%94%9F%E6%88%90token">3.生成token</a></li>
+<li><a href="#4%E9%85%8D%E7%BD%AEgithub%E5%9B%BE%E5%BA%8A">4.配置github图床</a></li>
+<li><a href="#5%E9%85%8D%E5%90%88jsdelivr%E4%BD%BF%E7%94%A8">5.配合jsdelivr使用</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://434308421.github.io/post/da-jian-yi-ge-bu-xu-yao-zi-ji-kai-fu-wu-qi-de-chun-jing-tai-bo-ke/">
+              <h3 class="post-title">
+                搭建一个不需要自己开服务器的纯静态博客
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://434308421.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

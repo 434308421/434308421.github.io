@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://434308421.github.io/</id>
+    <title>Gridea</title>
+    <updated>2020-05-19T16:08:12.326Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://434308421.github.io/"/>
+    <link rel="self" href="https://434308421.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://434308421.github.io/images/avatar.png</logo>
+    <icon>https://434308421.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[博客搭建教程]]></title>
+        <id>https://434308421.github.io/post/bo-ke-da-jian-jiao-cheng/</id>
+        <link href="https://434308421.github.io/post/bo-ke-da-jian-jiao-cheng/">
+        </link>
+        <updated>2020-05-19T16:07:16.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>注：这是一份很详细的关于Next5主题的博客搭建教程</p>
+</blockquote>
+<h1 id="第一步-安装git-bash">第一步 安装Git Bash</h1>
+<p><a href="https://gitforwindows.org/">Git Bash下载地址</a></p>
+<p>可以通过git version 查看当前版本 😁</p>
+<figure data-type="image" tabindex="1"><img src="https://s1.ax1x.com/2020/05/11/YGKCvD.png" alt="查看Git Bash当前版本" loading="lazy"></figure>
+<h1 id="第二步-安装nodejs">第二步 安装NodeJs</h1>
+<p><a href="https://nodejs.org/en/">NodeJs下载地址</a></p>
+<blockquote>
+<p>注：LTS为长期支持版，Current为当前最新版</p>
+</blockquote>
+<blockquote>
+<p>注：npm config set prefix &quot;D:\Program Files\nodejs\node_global&quot; 设置全局模块存放<br>
+注：npm config set cache &quot;D:\Program Files\nodejs\node_cache&quot; 设置全局cache存放</p>
+</blockquote>
+<p>在命令行输入以下命令安装express（注：“-g”表示安装到global目录下，就是上面设置的node_global中）</p>
+<p><code>npm install express -g</code></p>
+<p>可以看到node_global/node_modules下有express了</p>
+<p><b>安装cnpm，输入以下命令：  <code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></b></p>
+<p>可以用过node -v查看当前版本</p>
+<figure data-type="image" tabindex="2"><img src="https://s1.ax1x.com/2020/05/11/YGKlrQ.png" alt="查看NodeJs当前版本" loading="lazy"></figure>
+<h1 id="第三步-安装hexo">第三步 安装hexo</h1>
+<p>通过全局安装将hexo安装到node.js下</p>
+<p><code>npm i -g hexo</code></p>
+<p>可以用过hexo -v查看当前版本</p>
+<figure data-type="image" tabindex="3"><img src="https://s1.ax1x.com/2020/05/11/YGKIZd.png" alt="查看NodeJs当前版本" loading="lazy"></figure>
+<p>然后再目标盘符内新建一个用于存放博客的文件</p>
+<p>然后进入到文件内，鼠标右键，打开Git Bash Here</p>
+<p>初始化命令：<code>hexo init</code>，初始化完成后会看到以下文件内容</p>
+<figure data-type="image" tabindex="4"><img src="https://s1.ax1x.com/2020/05/11/YGKLz8.png" alt="查看NodeJs当前版本" loading="lazy"></figure>
+<p>解释一下：</p>
+<p>node_modules：是依赖包<br>
+public：存放的是生成的页面<br>
+scaffolds：命令生成文章等的模板<br>
+source：用命令创建的各种文章<br>
+themes：主题<br>
+_config.yml：整个博客的配置<br>
+db.json：source解析所得到的<br>
+package.json：项目所需模块项目的配置信息</p>
+<h1 id="第四步-搭桥到github">第四步 搭桥到GitHub</h1>
+<p>1.新建一个公共仓库</p>
+<p>回到GitHub，配置GitHub账户信息</p>
+<p><code>git config --global user.name &quot;你的GitHub名字&quot;</code><br>
+<code>git config --global user.email &quot;你的邮箱&quot;</code></p>
+<h2 id="创建ssh">创建SSH</h2>
+<p>在GitBash输入：<code>ssh-keygen -t rsa -C &quot;youremail@example.com</code>，生成ssh</p>
+<p>然后输入找到<code>cat id_rsa.pub</code>查看文件中的SSH内容并复制</p>
+<p>回到GitHub中，点击右上角头像，Setting,SSH and GPG keys,new SSH key，title随便取，key就填刚刚复制的那一段</p>
+<p>在gitbash中验证是否添加成功：<code>ssh -T git@github.com</code></p>
+<h1 id="第五步-本地预览并推到github">第五步 本地预览并推到GitHub</h1>
+<h2 id="本地预览">本地预览</h2>
+<p>用编辑器打开你的blog项目，修改_config.yml文件的一些配置(冒号之后都是有一个半角空格的)：</p>
+<p><code>deploy:</code><br>
+<code>type: git</code><br>
+<code>repo: git@github.com:434308421/434308421.github.io.git</code><br>
+<code>branch: master</code></p>
+<p>回到gitbash中，进入你的blog目录，分别执行以下命令：</p>
+<p><code>hexo clean</code><br>
+<code>hexo generate</code><br>
+<code>hexo server</code></p>
+<blockquote>
+<p>注:hexo 3.0把服务器独立成个别模块，需要单独安装：<br>
+安装server：<code>npm install hexo-server --save</code></p>
+</blockquote>
+<p>打开浏览器输入：<code>http://localhost:4000</code>查看效果</p>
+<h2 id="上传到github">上传到GitHub</h2>
+<p>安装deployer：<code>npm install hexo-deployer-git --save</code></p>
+<p>这样才能将你写好的文章部署到github服务器上并让别人浏览到</p>
+<p><b>不安装的话无法使用hexo d</b></p>
+<p>执行命令(建议每次都按照如下步骤部署)：</p>
+<p><code>hexo clean</code><br>
+<code>hexo generate</code><br>
+<code>hexo deploy</code></p>
+<p>注意deploy的过程中要输入你的username及passward</p>
+<p>在浏览器中输入<code>https://434308421.github.io/</code>就可以看到你的个人博客了</p>
+<p>感觉gitbash中东西太多的时候输入clear命令清空</p>
+<h1 id="第六步-配置主题">第六步 配置主题</h1>
+<p>hexo初始化之后默认的主题是landscape , 然后你可以去github中搜索你要的主题名称，里面都会有该主题的如何使用的介绍，按着来就好了，反正就是改改改！我选的是基于Next5主题美化的一款hexo博客主题,看起来挺不错，至少是我喜欢的类型。</p>
+<p>Next5博客主题：<code>https://bestzuo.cn</code><br>
+Next5博客地址：<code>https://github.com/Sanarous/hexo-theme-next5-polished</code></p>
+<p>基于Next5魔改的主题：<code>https://www.liaofuzhan.com</code><br>
+基于Next5魔改的主题地址：<code>https://github.com/leafjame/hexo-theme-next5-leaf</code></p>
+<p>找到需要的主题GitHub仓库地址在git bash中执行：<code>git clone 主题地址</code></p>
+<p>然后修改主题文件夹的名字，再修改博客根目录_config.yml里面的theme配置主题名称</p>
+<p>最后：<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server</code>预览</p>
+<p>或者：<code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo d</code>上传GitHub</p>
+<p><b><a href="https://www.cnblogs.com/visugar/p/6821777.html">以上内容来源于此地</a></b></p>
+<h1 id="第七步-修改主题">第七步 修改主题</h1>
+<h2 id="网站favicon图标设置">网站favicon图标设置</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>图片位置：D:\临时文件夹\myblog\blog\themes\next5\source\images</p>
+<p>使用Ctrl+F搜索favicon进行修改</p>
+<h2 id="新博文撰写">新博文撰写</h2>
+<p>放置位置：D:\临时文件夹\myblog\blog\source_posts</p>
+<h2 id="文章开启阅读更多按钮">文章开启阅读更多按钮</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>使用Ctrl+F搜索auto_excerpt进行修改</p>
+<h2 id="博客主题文字汉化">博客主题文字汉化</h2>
+<p>预览主题支持的语言文件位置：D:\临时文件夹\myblog\blog\themes\next5\languages</p>
+<p>更改位置：D:\临时文件夹\myblog\blog_config.xml</p>
+<h2 id="博客根目录基本内容配置">博客根目录基本内容配置</h2>
+<p>更改位置：D:\临时文件夹\myblog\blog_config.xml</p>
+<blockquote>
+<p>Site<br>
+title: 小王很好奇<br>
+subtitle: 对任何事物保持好奇心<br>
+description: 电脑小技巧/黑科技分享<br>
+keywords: 黑科技，小王很好奇，电脑小技巧<br>
+author: MrWang<br>
+language: zh-Hans<br>
+timezone: ''</p>
+</blockquote>
+<h2 id="主标题遇到乱码">主标题遇到乱码</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog_config.xml</p>
+<p>操作：另存为将编码ANSI改成UTF-8即可！</p>
+<h2 id="开启文章打赏按钮">开启文章打赏按钮</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>图片位置：D:\临时文件夹\myblog\blog\themes\next5\source\images</p>
+<p>搜索 reward并进行修改</p>
+<h2 id="开启文章版本信息">开启文章版本信息</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>搜索 post_copyright，将enable改为true即可</p>
+<h2 id="更改首页轮播图旁热门排行等链接">更改首页轮播图旁热门排行等链接</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5\layout_macro\carousel.swig</p>
+<p>找到对应的位置修改即可</p>
+<h2 id="更改首页轮播图图片与链接">更改首页轮播图图片与链接</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>搜索carousel进行修改即可</p>
+<h2 id="更改首页头像下联系方式">更改首页头像下联系方式</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>搜索social进行修改即可</p>
+<h2 id="更改首页头像下联系方式-2">更改首页头像下联系方式</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5\layout_layout.swig</p>
+<p>搜索headband进行修改即可</p>
+<h2 id="添加文章置顶及精品设置">添加文章置顶及精品设置</h2>
+<h3 id="安装组件">安装组件</h3>
+<p>输入以下命令：<code>npm install hexo-generator-index-pin-top --save</code></p>
+<h3 id="设置置顶">设置置顶</h3>
+<p>在需要置顶的文章头部添加<code>top: true</code>或者top: 任意数字</p>
+<blockquote>
+<p>top中数字越大，文章越靠前</p>
+</blockquote>
+<p><b>文章置顶功能已实现。不过还缺失置顶图标。</b></p>
+<h3 id="设置置顶图标">设置置顶图标</h3>
+<p>文件地址：D:\临时文件夹\myblog\blog\themes\next5\layout_macro\post.swig</p>
+<p>在<code>&lt;div class=&quot;post-meta&quot;&gt;</code>的第一个<span>标签下，插入如下代码：</p>
+<p><code>{% if post.top %}</code><br>
+<code>&lt;i class=&quot;fa fa-thumb-tack&quot;&gt;&lt;/i&gt;</code><br>
+<code>&lt;font color=7D26CD&gt;置顶&lt;/font&gt;</code><br>
+<code>&lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;</code><br>
+<code>{% endif %}</code></p>
+<p><b>至此，文章置顶功能已实现。</b></p>
+<h3 id="设置精品">设置精品</h3>
+<p>文件地址：D:\临时文件夹\myblog\blog\themes\next5\layout_macro\post.swig</p>
+<p>找到<code>post.swig</code>，在前文<code>置顶</code>功能后面，插入如下代码：</p>
+<p><code>{% if post.essential%}</code><br>
+<code>&lt;span class=&quot;post-meta-item-icon&quot;&gt;</code><br>
+<code>&lt;i class=&quot;fa fa-newspaper-o jingping&quot;&gt;精品&lt;/i&gt;</code><br>
+<code>&lt;/span&gt;</code><br>
+<code>&lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;</code><br>
+<code>{% endif %}</code></p>
+<h3 id="添加精品css样式">添加精品CSS样式</h3>
+<p>文件地址：D:\临时文件夹\myblog\blog\themes\next5\source\css_custom\custom.styl，增加如下样式：</p>
+<p><code>.jingping{</code><br>
+<code>background : #00a8c3;</code><br>
+<code>padding:2px 4px 2px 4px;</code><br>
+<code>color: #fff;</code><br>
+<code>}</code></p>
+<h3 id="设置精品文章">设置精品文章</h3>
+<p>在需要设置精品的文章md文件中，加入如下代码：</p>
+<p><code>essential: true</code></p>
+<h2 id="新建标签">新建标签</h2>
+<p><code>hexo new page tags</code></p>
+<h3 id="md文件设置">md文件设置</h3>
+<p>title: tags<br>
+date: 2017-12-02 21:01:24<br>
+type: &quot;tags&quot;</p>
+<h3 id="基本设置">基本设置</h3>
+<p>tags:<br>
+- hexo+next</p>
+<h2 id="新建分类">新建分类</h2>
+<p><code>hexo new page categories</code></p>
+<h3 id="md文件设置-2">md文件设置</h3>
+<p>title: categories<br>
+date: 2017-12-02 21:01:24<br>
+type: &quot;categories&quot;</p>
+<h3 id="基本设置-2">基本设置</h3>
+<p>categories: 技术汇总</p>
+<h2 id="新建友情链接">新建友情链接</h2>
+<p><code>$ hexo new page links</code></p>
+<p>然后在根目录/source下会生成一个links文件夹，打开其中的index.md文件，在头部写入type = &quot;links&quot;，如下:</p>
+<p>title: 友情链接<br>
+date: 2019-08-11 15:34:16<br>
+type: &quot;links&quot;</p>
+<p>如果需要关闭这个页面的评论的话，可以设置如下:</p>
+<p>title: 友情链接<br>
+date: 2019-08-11 15:34:16<br>
+type: &quot;links&quot;<br>
+<b>comments: false</b></p>
+<h3 id="配置友链">配置友链</h3>
+<p>文件地址：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>搜索mylinks进行修改即可！</p>
+<h2 id="文章元数据设置">文章元数据设置</h2>
+<p>元数据就是显示在 home 页的文章创建于、更新于、阅读次数之类的数据，搜索 post_meta：</p>
+<p>post_meta:<br>
+item_text: true  # 是否显示对应的文字<br>
+created_at: true  # 是否显示 创建于<br>
+updated_at:       # 是否显示 更新于<br>
+enabled: false<br>
+# 更新日期显示规则，只有更新日期与创建日期不同时，才会显示<br>
+another_day: true<br>
+categories: true # 是否显示分类信息</p>
+<h2 id="文章字数统计设置">文章字数统计设置</h2>
+<p>在站点根目录打开 git bash，输入<code>npm i --save hexo-wordcount</code></p>
+<p>进入主题配置文件 _config.yml，修改如下配置：</p>
+<p>Post wordcount display settings<br>
+Dependencies: https://github.com/willin/hexo-wordcount<br>
+文章字数展示设置<br>
+post_wordcount:</p>
+<h1 id="文本显示">文本显示</h1>
+<p>item_text: true</p>
+<h1 id="文章字数统计">文章字数统计</h1>
+<p>wordcount: true</p>
+<h1 id="阅读时长">阅读时长</h1>
+<p>min2read: true</p>
+<h1 id="站点总字数统计">站点总字数统计</h1>
+<p>totalcount: false</p>
+<h1 id="该post_wordcount的所有设置另起一行显示">该post_wordcount的所有设置另起一行显示</h1>
+<p>separated_meta: true</p>
+<h2 id="开启相关文章推荐功能">开启相关文章推荐功能</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>搜索 related_posts，找到如下配置：</p>
+<p>related_posts:<br>
+enable: true  # 是否开启<br>
+title: 相关文章推荐    # 标题<br>
+display_in_home: false # 是否在首页显示，建议为false<br>
+params:<br>
+maxCount: 5   # 相关文章的最大数量<br>
+#PPMixingRate: 0.0<br>
+#isDate: false<br>
+#isImage: false<br>
+#isExcerpt: false</p>
+<p>开启相关文章推荐需要安装<code>hexo-related-popular-posts</code>模块，即在 hexo站点根目录下使用<code>npm install hexo-related-popular-posts --save</code>安装模块，然后开启上面的相关文章功能就可以啦~</p>
+<h2 id="在文章底部增加版权信息">在文章底部增加版权信息</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>搜索 post_copyright，将enable改为false再进行操作！</p>
+<p><a href="https://www.cnblogs.com/php-linux/p/8416122.html">点击这里查看修改方法</a></p>
+<h2 id="设置文字加密访问">设置文字加密访问</h2>
+<p><a href="https://www.baidu.com/link?url=WB1YWfwdGJXBfwE62un8udnzGstxPeFC2k_hgPjLWUcmys5yveh8FEjnGQrefNYbqhhcxybW_RmE1rjRWOoI7tK2BGGjaN1u6AI--6OtLMe&amp;wd=&amp;eqid=82a68d6500045fec000000045eb9871d">点击这里查看修改方法</a></p>
+<h2 id="设置rss订阅">设置RSS订阅</h2>
+<h3 id="安装rss插件">安装RSS插件</h3>
+<p><code>npm install --save hexo-generator-feed</code></p>
+<h3 id="打开站点配置文件_configyml进行修改">打开站点配置文件_config.yml进行修改</h3>
+<p>Extensions<br>
+Plugins: http://hexo.io/plugins/<br>
+plugins: hexo-generate-feed</p>
+<h3 id="打开主题配置文件_configyml进行修改">打开主题配置文件_config.yml进行修改</h3>
+<p><code>rss: /atom.xml</code> // 注意：有一个空格</p>
+<h2 id="显示当前浏览进度">显示当前浏览进度</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5_config.xml</p>
+<p>搜索关键字 scrollpercent ,把 false 改为 true</p>
+<p>如果想把 top 按钮放在侧边栏,打开themes/next5/_config.yml ,搜索关键字 b2t ,把 false 改为 true</p>
+<p><a href="https://www.jianshu.com/p/3f7e91be51b4">点击这里查看修改方法一</a></p>
+<p><a href="https://blog.csdn.net/u011236348/article/details/88169113">点击这里查看修改方法二</a></p>
+<h2 id="添加valine评论系统">添加Valine评论系统</h2>
+<p><a href="https://blog.csdn.net/jiunian_2761/article/details/97388997#3_Hexo_Next_32">点击这里查看修改方法</a></p>
+<h2 id="美化valine评论系统待定">美化Valine评论系统【待定】</h2>
+<p><a href="https://www.jianshu.com/go-wild?ac=2&amp;url=https%3A%2F%2Fhasaik.com%2Fposts%2F89ea6c8b.html">点击这里查看修改方法</a></p>
+<h2 id="hexo中使用emoji表情">Hexo中使用emoji表情</h2>
+<h3 id="安装">安装</h3>
+<p>npm un hexo-renderer-marked --save<br>
+npm i hexo-renderer-markdown-it --save<br>
+npm install markdown-it-emoji --save</p>
+<p><a href="https://hasaik.com/posts/9b280ea3.html">点击这里查看修改方法</a></p>
+<p>原因解释：<br>
+<a href="https://www.baidu.com/link?url=mXMtqwreEXHRG-oBNCEG3v5nW0yfsH9vl2NCkxUmGje83HWK721kBHCcn6uemsEwQnfB354TXDT6i9Mnv47Jg1rAN1zid0qOan9FWzdyx7_&amp;wd=&amp;eqid=e7dd5f850000108b000000045eba65cc">点击这里查看</a></p>
+<h2 id="修改标题崩溃欺骗特效中图标">修改标题崩溃欺骗特效中图标</h2>
+<p><a href="https://hasaik.com/posts/ab21860c.html">点击这里查看修改方法</a></p>
+<h2 id="修改鼠标点击特效">修改鼠标点击特效</h2>
+<p><a href="https://www.liaofuzhan.com/posts/2114475547.html">点击这里查看修改方法</a></p>
+<h2 id="修改博客底部site-words-total-count及我已在此等候你">修改博客底部Site words total count及我已在此等候你</h2>
+<p>文件位置：D:\临时文件夹\myblog\blog\themes\next5\languages\zh-Hans.yml</p>
+<h2 id="设置文字阅读量">设置文字阅读量</h2>
+<p><a href="https://www.baidu.com/link?url=FXBBjNOdlv28DlRbJalLgMXHFCHgGBrO3HlhS1bx1TJxmvRN59gpGqJDyB5tYyG_My66KvhOXNmUX6GUjqFxQxWePINi_iytTq4A1m7O4Oi&amp;wd=&amp;eqid=cc2937cf0005c728000000045eba8ce0">点击这里查看修改方法一</a></p>
+<p><a href="https://bestzuo.cn/posts/blog-establish.html">点击这里查看修改方法二</a></p>
+<h2 id="设置文字永久链接">设置文字永久链接</h2>
+<p><a href="https://blog.csdn.net/lewky_liu/article/details/80517635">点击这里查看修改方法</a></p>
+<h2 id="添加博客热门文章页面-待定">添加博客热门文章页面 【待定】</h2>
+<p><a href="https://bestzuo.cn/posts/blog-establish.html">点击这里查看修改方法一</a></p>
+<p><a href="https://hoxis.github.io/hexo-next-read-rank.html">点击这里查看修改方法二</a></p>
+<h2 id="双线部署到-coding-pages-和-github-pages">双线部署到 Coding Pages 和 GitHub Pages</h2>
+<p>参考文章如下：</p>
+<p><a href="https://www.itrhx.com/2019/09/16/A47-hexo-deployed-to-github-and-coding/">点击这里查看修改方法一</a></p>
+<p>遇到的问题解决方法如下：</p>
+<p><a href="https://www.jianshu.com/p/68ae899c4d38">点击这里查看解决方法</a></p>
+<h1 id="鸣谢以下文章为我提供idea">鸣谢以下文章为我提供idea</h1>
+<p><a href="https://bestzuo.cn/">基本Next5优化的Sanarous</a><br>
+<a href="https://www.liaofuzhan.com/">基本Next5魔改的北宸</a><br>
+<a href="http://www.lzblog.cn/">基本Next5基本操作的Dear Blog</a><br>
+<a href="https://blog.zuiyu1818.cn/">基本文章链接优化的醉渔小站</a><br>
+<a href="https://lewky.cn/">Yulin Lewis' Blog 大佬</a><br>
+<a href="https://www.cnblogs.com/MuYunyun/p/6919600.html#_label5">hexo摸爬滚打之进阶教程</a><br>
+<a href="https://www.appinn.com/markdown/">Markdown 语法说明 (简体中文版)</a><br>
+<a href="https://www.baidu.com/link?url=QBL5ZLczcyCqiZOC6p9B9ieTN9DwinWvK5pg9-mtldpcRbG0MhC-ftPfLqWJXfN4&amp;wd=&amp;eqid=80e6f8dc0002fb3f000000045eb923a9">提供RRS订阅的简书作者</a><br>
+<a href="https://immmmm.com/">木木木木木</a><br>
+<a href="https://hasaik.com/">Xu's Blog</a><br>
+<a href="https://blog.pangao.vip/">潘高的小站</a><br>
+<a href="https://www.xiaocoder.com/">Xiao's Blog</a><br>
+<a href="https://blog.csdn.net/nightmare_dimple/article/details/86661474">Hexo博客优化之内容编辑</a><br>
+<a href="http://qiujiaqi.cn/hexo/theme-optimization/">QiuJiaqi's Home</a><br>
+<a href="https://www.itrhx.com/">TRHX's BLOG</a><br>
+<a href="https://www.simon96.online/">遇见西门</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[搭建带有CDN加速的免费图床]]></title>
+        <id>https://434308421.github.io/post/da-jian-dai-you-cdn-jia-su-de-mian-fei-tu-chuang/</id>
+        <link href="https://434308421.github.io/post/da-jian-dai-you-cdn-jia-su-de-mian-fei-tu-chuang/">
+        </link>
+        <updated>2020-05-19T16:06:36.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="搭建一个自己的免费图床工具">搭建一个自己的免费图床工具</h1>
+<p>##本文用到的工具或网站</p>
+<p>PicGo</p>
+<p>jsdelivr</p>
+<p>github</p>
+<h3 id="1下载picgo">1.下载PicGo</h3>
+<p>首先进入PicGo的下载地址 选择最新版本下载，根据自己的系统下载对应的安装包，我这里是Windows</p>
+<p><a href="https://github.com/Molunerfinn/PicGo/releases">PicGo的下载地址</a></p>
+<h3 id="2创建仓库">2.创建仓库</h3>
+<p>首先创建一个github仓库，名字可以随便取，然后勾选README初始化仓库</p>
+<h3 id="3生成token">3.生成token</h3>
+<p>【进入github】-【点击头像】-【settings】-【developer settings】-【Personal access tokens】</p>
+<p>点击【Generate new token】</p>
+<p>自定义一个名字，然后勾选【repo】最后点绿色按钮创建即可</p>
+<p>请复制你的token，它只显示一次，请妥善保管</p>
+<h3 id="4配置github图床">4.配置github图床</h3>
+<p>先打开你安装好的picgo然后左栏依次选择【图床设置】-【github图床】</p>
+<blockquote>
+<p>如果你打开picgo时没有直接出来界面，它可能藏在你的托盘图标处</p>
+</blockquote>
+<p>仓库名格式是你的用户名/仓库名<br>
+分支是master<br>
+token填我们刚刚生成的<br>
+存储路径可以填也可以不填，如果你填了img/，它就会上传到你仓库的img目录下<br>
+自定义域名的格式：https://cdn.jsdelivr.net/gh/用户名/仓库名<br>
+最后记得确定保存</p>
+<h3 id="5配合jsdelivr使用">5.配合jsdelivr使用</h3>
+<blockquote>
+<p>链接格式：https://cdn.jsdelivr.net/gh/你的用户名/仓库名/文件路径</p>
+</blockquote>
+<blockquote>
+<p>例如：https://cdn.jsdelivr.net/gh/kjhuanhao/testcdn/1.png</p>
+</blockquote>
+<p>我们在上传的时候会自动复制这个格式的链接，大家可以可以直接复制查看</p>
+<p>然后你就可以通过这个链接访问你的图片了</p>
+<blockquote>
+<p>引自：<a href="https://mrhuanhao.cn/2020/03/23/picgo/">Huanhao's Blog</a></p>
+</blockquote>
+<blockquote>
+<p>待参考：<a href="https://mrhuanhao.cn/2020/03/28/solvepicnet/">Huanhao's Blog</a></p>
+</blockquote>
+<blockquote>
+<p>鸣谢：<a href="https://mrhuanhao.cn/">Huanhao's Blog</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[搭建一个不需要自己开服务器的纯静态博客]]></title>
+        <id>https://434308421.github.io/post/da-jian-yi-ge-bu-xu-yao-zi-ji-kai-fu-wu-qi-de-chun-jing-tai-bo-ke/</id>
+        <link href="https://434308421.github.io/post/da-jian-yi-ge-bu-xu-yao-zi-ji-kai-fu-wu-qi-de-chun-jing-tai-bo-ke/">
+        </link>
+        <updated>2020-05-19T16:06:02.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://www.baidu.com/link?url=6YFEO-mxtayrVCIrwAdwiv4oFQEmoz6vY6HhUAhJHo9BNWNOY7c22ZnhsrpxqV10&amp;wd=&amp;eqid=a8a91b4000236da1000000045ebff894">搭建一个不需要自己开服务器的纯静态博客</a></p>
+<p><a href="https://gohugo.io/getting-started/quick-start/">Hugo主题网站</a></p>
+<p><a href="https://learnku.com/articles/42178">一个 go 写的快速静态网站构建工具</a></p>
+<p><a href="https://www.snowlyg.com/">Snowlyg</a></p>
+<p><a href="https://www.gohugo.org/">Hugo中文文档</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Eclipse的正确安装使用姿势]]></title>
+        <id>https://434308421.github.io/post/eclipse-de-zheng-que-an-zhuang-shi-yong-zi-shi/</id>
+        <link href="https://434308421.github.io/post/eclipse-de-zheng-que-an-zhuang-shi-yong-zi-shi/">
+        </link>
+        <updated>2020-05-19T16:05:33.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
+<blockquote>
+<p>本学习笔记是有关如何设置Eclipse的详细说明。即使你天天在使用它，但是，相信我，或许你并不足够了解它。</p>
+</blockquote>
+<h2 id="安装java运行时环境">安装Java运行时环境</h2>
+<p>Eclipse是Java应用程序，因此设置Eclipse的第一步是安装Java运行时环境。</p>
+<p>如果您的计算机上还没有所需的Java运行时环境，则需要安装一个。您可以访问<a href="https://link.zhihu.com/?target=http%3A//www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle网站</a>进行下载。您可以选择下载JRE或JDK。对于Eclipse中的大多数功能，JRE就足够了。但是我注意到，如果您想开发一个<a href="https://help.eclipse.org/2020-03/index.jsp?topic=%2Forg.eclipse.stardust.docs.wst%2Fhtml%2Fwst-integration%2Fdynamic-web-proj.html">Dynamic Web Project</a>，并且想用<a href="https://link.zhihu.com/?target=http%3A//help.eclipse.org/juno/index.jsp%3Ftopic%3D%252Forg.eclipse.wst.server.ui.doc.user%252Ftopics%252Ftj2eepreview.html">J2EE Preview服务器</a>对其进行调试，则需要一个JDK来为Eclipse IDE供电。在本研究笔记中，我为Windows 64位计算机选择了JDK版本（Java SE 8U5），并将其安装在默认位置。</p>
+<figure data-type="image" tabindex="1"><img src="https://www.helloimg.com/images/2020/05/17/16b1c95dc4809864f.jpg" alt="16b1c95dc4809864f.jpg" loading="lazy"></figure>
+<p>安装程序将JRE和JDK都添加到了计算机中。我们将需要记住该位置，然后将Eclipse配置为使用此特定版本的Java运行时环境。</p>
+<h2 id="下载eclipse">下载Eclipse</h2>
+<p>您可以转到<a href="https://link.zhihu.com/?target=https%3A//www.eclipse.org/downloads/">Eclipse</a>的<a href="https://www.eclipse.org/downloads/">官方网站</a>下载所需的Eclipse版本。在此学习笔记中，我下载了Eclipse Kepler（4.3.2）。有许多<a href="https://link.zhihu.com/?target=https%3A//www.eclipse.org/downloads/compare.php">Eclipse软件包</a>可供选择。由于将进行大量Web应用程序开发，因此我为Windows 64位计算机选择了“ Java EE开发人员的Eclipse IDE”。以下是从Eclipse网站下载的zip文件。</p>
+<figure data-type="image" tabindex="2"><img src="https://www.helloimg.com/images/2020/05/17/226d92b6d5e0bbf35.jpg" alt="226d92b6d5e0bbf35.jpg" loading="lazy"></figure>
+<p>下载zip文件后，您可以将该zip文件解压缩到计算机上的任何位置。</p>
+<figure data-type="image" tabindex="3"><img src="https://www.helloimg.com/images/2020/05/17/3cb7f27ecc8b875a6.jpg" alt="3cb7f27ecc8b875a6.jpg" loading="lazy"></figure>
+<p>“ eclipse.exe”文件是在Windows计算机上启动Eclipse的文件。但是在享用Eclipse午餐之前，我们需要配置所需版本的Java运行时环境以为其提供支持。</p>
+<h2 id="选择所需的java运行时以启动eclipse">选择所需的Java运行时以启动Eclipse</h2>
+<p>通常，您的计算机上有多个版本的Java运行时环境。希望指定所需的功能来增强Eclipse。根据<a href="https://link.zhihu.com/?target=http%3A//wiki.eclipse.org/FAQ_How_do_I_run_Eclipse%253F%23Find_the_JRE">Eclipse文档</a>，有三种常见的方法来指定Java运行时环境。</p>
+<ul>
+<li>如果eclipse / jre目录中安装了Java运行时环境，则Eclipse将使用它；否则，Eclipse将使用它。</li>
+<li>否则，Eclipse启动器将查询“ eclipse.ini”文件和系统路径变量。Eclipse不参考JAVA_HOME环境变量；</li>
+<li>您还可以选择直接调用所需的JVM，以启动启动Eclipse的“ jar”文件。对于我的学习笔记中的Eclipse版本，它是“插件”文件夹中的“ org.eclipse.equinox.launcher_1.3.0.v20130327-1440.jar”文件。</li>
+<li></li>
+</ul>
+<p>根据<a href="https://link.zhihu.com/?target=http%3A//wiki.eclipse.org/FAQ_How_do_I_run_Eclipse%253F%23Find_the_JRE">Eclipse文档</a>，最推荐的方法是在“ eclipse.ini”文件中指定所需的Java运行时。</p>
+<figure data-type="image" tabindex="4"><img src="https://www.helloimg.com/images/2020/05/17/4ba2f04c9833889e0.jpg" alt="4ba2f04c9833889e0.jpg" loading="lazy"></figure>
+<p>在我的学习笔记中，我在“ eclipse.ini”文件中添加了指向刚安装的JVM的“ -vm”参数。保存“ eclipse.ini”文件后，我们准备启动Eclipse。</p>
+<h2 id="启动eclipse">启动Eclipse</h2>
+<p>Eclipse在“工作区”中组织代码。“工作区”是Eclipse在其中放置项目所有代码的文件夹。要启动Eclipse，让我们在计算机中的任何位置创建一个名为“ FirstEclipseWorkspace”的空文件夹。</p>
+<figure data-type="image" tabindex="5"><img src="https://www.helloimg.com/images/2020/05/17/5e92949e566a0d8b7.jpg" alt="5e92949e566a0d8b7.jpg" loading="lazy"></figure>
+<p>在Windows环境中，我们可以双击“ eclipse.exe”文件以启动Eclipse。</p>
+<figure data-type="image" tabindex="6"><img src="https://www.helloimg.com/images/2020/05/17/6443b4380d54ecb0c.jpg" alt="6443b4380d54ecb0c.jpg" loading="lazy"></figure>
+<p>在启动过程中，Eclipse将要求我们选择一个“工作区”。我们可以浏览到刚刚创建的文件夹，然后单击“确定”按钮。</p>
+<figure data-type="image" tabindex="7"><img src="https://www.helloimg.com/images/2020/05/17/159af3397725abb97.jpg" alt="159af3397725abb97.jpg" loading="lazy"></figure>
+<p>由于“ FirstEclipseWorkspace”文件夹为空，因此Eclipse向我们显示了欢迎页面。要再次检查Eclipse是否确实由所需的JVM版本提供支持，我们可以单击“帮助”菜单项，然后单击“关于Eclipse”以打开“关于Eclipse”窗口。</p>
+<figure data-type="image" tabindex="8"><img src="https://www.helloimg.com/images/2020/05/17/23247dee8968a5fd3.jpg" alt="23247dee8968a5fd3.jpg" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://www.helloimg.com/images/2020/05/17/392c003618dd75a09.jpg" alt="392c003618dd75a09.jpg" loading="lazy"></figure>
+<p>在“关于Eclipse”窗口中，单击“安装详细信息”按钮将打开“ Eclipse安装详细信息”窗口。</p>
+<figure data-type="image" tabindex="10"><img src="https://www.helloimg.com/images/2020/05/17/4cb132896a1fda604.jpg" alt="4cb132896a1fda604.jpg" loading="lazy"></figure>
+<p>我们可以看到，为该Eclipse实例提供支持的JVM确实是我们在“ eclipse.ini”文件中指定的JVM。</p>
+<h2 id="创建一个简单的动态web项目">创建一个简单的动态Web项目</h2>
+<p>我们已经成功启动了Eclipse，现在我们将在Eclipse中创建一个简单的动态Web项目。我将使用<a href="https://link.zhihu.com/?target=http%3A//tomcat.apache.org/">Tomcat</a>调试此项目。如果您的计算机上没有安装Tomcat，则Eclipse可以为您安装它，并且您将需要在计算机上创建一个文件夹以供Eclipse安装Tomcat。由于我将使用Tomcat 7进行开发工作，因此将文件夹命名为“ Tomcat7”。</p>
+<figure data-type="image" tabindex="11"><img src="https://www.helloimg.com/images/2020/05/17/5bc22456d386c856e.jpg" alt="5bc22456d386c856e.jpg" loading="lazy"></figure>
+<p>创建Tomcat安装文件夹后，我们可以使用Eclipse提供的项目向导在Eclipse中创建Web项目。</p>
+<figure data-type="image" tabindex="12"><img src="https://www.helloimg.com/images/2020/05/17/67705714f6bb156bc.jpg" alt="67705714f6bb156bc.jpg" loading="lazy"></figure>
+<p>可以从Eclipse菜单“文件”-&gt;“新建”-&gt;“动态Web项目”启动项目向导。</p>
+<figure data-type="image" tabindex="13"><img src="https://www.helloimg.com/images/2020/05/17/75c240e20d3c22e3f.jpg" alt="75c240e20d3c22e3f.jpg" loading="lazy"></figure>
+<p>让我们给项目命名为“ SimpleWeProject”，并将项目配置为使用Tomcat。单击“新运行时”按钮将为我们带来“新服务器运行时环境”向导。</p>
+<figure data-type="image" tabindex="14"><img src="https://www.helloimg.com/images/2020/05/17/1ea62942cc3401786.jpg" alt="1ea62942cc3401786.jpg" loading="lazy"></figure>
+<p>我们可以选择“ Apache Tomcat v7.0”，然后单击“下一步”按钮来为该项目设置Tomcat服务器。</p>
+<figure data-type="image" tabindex="15"><img src="https://www.helloimg.com/images/2020/05/17/231ece3f57a01b905.jpg" alt="231ece3f57a01b905.jpg" loading="lazy"></figure>
+<p>由于我们尚未在计算机上安装Tomcat，因此可以单击“下载并安装”按钮将Tomcat安装在我们先前创建的“ Tomcat7”文件夹中。成功安装Tomcat之后，项目向导应如下所示。</p>
+<figure data-type="image" tabindex="16"><img src="https://www.helloimg.com/images/2020/05/17/31e03b40f52d02121.jpg" alt="31e03b40f52d02121.jpg" loading="lazy"></figure>
+<p>单击“下一步”按钮“两次”，我们将准备使用“新建动态Web项目”向导完成创建“动态Web项目”。</p>
+<figure data-type="image" tabindex="17"><img src="https://www.helloimg.com/images/2020/05/17/4c22d6a9208550262.jpg" alt="4c22d6a9208550262.jpg" loading="lazy"></figure>
+<p>确保检查“生成web.xml部署描述符”。通过选中此复选框，向导将在项目中添加“ web.xml”文件，该文件用于配置有关Web应用程序的许多重要信息。单击“完成”按钮后，向导将在Eclipse中创建一个空的“动态Web项目”。</p>
+<figure data-type="image" tabindex="18"><img src="https://www.helloimg.com/images/2020/05/17/5d8dc688cf876bc1a.jpg" alt="5d8dc688cf876bc1a.jpg" loading="lazy"></figure>
+<p><b>将简单的Java服务器页面添加到项目中</b></p>
+<figure data-type="image" tabindex="19"><img src="https://www.helloimg.com/images/2020/05/17/6c929257e0b6efdcc.jpg" alt="6c929257e0b6efdcc.jpg" loading="lazy"></figure>
+<p>要将JSP页面添加到项目中，我们可以右键单击“ WebContent”文件夹-&gt;“新建”-&gt;“ JSP文件”以启动“新建JSP文件”向导。</p>
+<figure data-type="image" tabindex="20"><img src="https://www.helloimg.com/images/2020/05/17/73089d2ba032635b4.jpg" alt="73089d2ba032635b4.jpg" loading="lazy"></figure>
+<p>将JSP文件命名为“ index.jsp”，然后单击“完成”按钮，该JSP文件将添加到项目中。</p>
+<figure data-type="image" tabindex="21"><img src="https://www.helloimg.com/images/2020/05/17/8194b8ba973bcbd58.jpg" alt="8194b8ba973bcbd58.jpg" loading="lazy"></figure>
+<p>然后，我们可以编辑“ index.jsp”文件。为了使该项目尽可能简单，“ index，jsp”唯一要做的就是显示文本“ Eclipse很酷！”。在浏览器中。</p>
+<figure data-type="image" tabindex="22"><img src="https://www.helloimg.com/images/2020/05/17/9d2739876f444bb20.jpg" alt="9d2739876f444bb20.jpg" loading="lazy"></figure>
+<h2 id="使用tomcat在eclipse中运行web项目">使用Tomcat在Eclipse中运行Web项目</h2>
+<p>要在带有Tomcat的Eclipse中运行Web项目，我们可以右键单击项目“ SimpleWeProject”-&gt;“运行方式”-&gt;“ 1Run on Server”。将会弹出一个窗口，让我们选择运行该应用程序的服务器。</p>
+<figure data-type="image" tabindex="23"><img src="https://www.helloimg.com/images/2020/05/17/1026fbc955ad7a5829.jpg" alt="1026fbc955ad7a5829.jpg" loading="lazy"></figure>
+<p>由于我们已将该项目的“目标运行时”配置为“ Apache Tomcat v7.0”，因此我们可以采用所有默认选择，然后单击“完成”按钮以在Eclipse中嵌入的Web浏览器中运行Web应用程序。</p>
+<figure data-type="image" tabindex="24"><img src="https://www.helloimg.com/images/2020/05/17/1183df5767e10436be.jpg" alt="1183df5767e10436be.jpg" loading="lazy"></figure>
+<p>当然，您也可以将页面加载到独立的浏览器中。下图显示了Firefox中显示的网页。</p>
+<figure data-type="image" tabindex="25"><img src="https://www.helloimg.com/images/2020/05/17/124f8bd1b17a68dc25.jpg" alt="124f8bd1b17a68dc25.jpg" loading="lazy"></figure>
+<h3 id="问题eclipse需要什么运行环境">问题：Eclipse需要什么运行环境？</h3>
+<h3 id="答因为它是java应用程序所以它需要先安装好java运行时环境">答：因为它是java应用程序，所以它需要先安装好java运行时环境。</h3>
+<blockquote>
+<p>引用自：<a href="https://zhuanlan.zhihu.com/p/128985449">来来来！一文告诉你Eclipse的正确安装使用姿势，你都清楚吗？</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Git提交时 表情使用指南]]></title>
+        <id>https://434308421.github.io/post/git-ti-jiao-shi-biao-qing-shi-yong-zhi-nan/</id>
+        <link href="https://434308421.github.io/post/git-ti-jiao-shi-biao-qing-shi-yong-zhi-nan/">
+        </link>
+        <updated>2020-05-19T16:04:57.000Z</updated>
+        <content type="html"><![CDATA[<p>在浏览他人的优秀的Github项目时，我有时会发现这种情况，git的提交记录竟然有emoji前缀，感觉挺有趣的：</p>
+<figure data-type="image" tabindex="1"><img src="https://www.helloimg.com/images/2020/05/17/14ec358f74ccbd1ba.jpg" alt="14ec358f74ccbd1ba.jpg" loading="lazy"></figure>
+<p>一番探索后，我发现了emoji在git中的使用方法，直接在git提交时添加emoji图标代码就可以了，如下：</p>
+<figure data-type="image" tabindex="2"><img src="https://www.helloimg.com/images/2020/05/17/284781afe6b6dc7a4.jpg" alt="284781afe6b6dc7a4.jpg" loading="lazy"></figure>
+<p>这样子去死记硬背是不是不太科学。</p>
+<p>所以我们用sourcetree偏好设置</p>
+<figure data-type="image" tabindex="3"><img src="https://www.helloimg.com/images/2020/05/17/317c59264937ec9e6.jpg" alt="317c59264937ec9e6.jpg" loading="lazy"></figure>
+<p>这里面可以直接设置自动填充模板</p>
+<figure data-type="image" tabindex="4"><img src="https://www.helloimg.com/images/2020/05/17/406f13dae9dd7eeb1.jpg" alt="406f13dae9dd7eeb1.jpg" loading="lazy"></figure>
+<p>图标表情信息我粘贴过来。大家可以直接设置很简单的</p>
+<p>这样大家每次提交commit的时候就可以很方便的粘贴你想要的表情啦</p>
+<blockquote>
+<p>引用自：<a href="https://zhuanlan.zhihu.com/p/139600720">Git提交时 表情使用指南</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[关于GitHub提交的几个参考链接]]></title>
+        <id>https://434308421.github.io/post/guan-yu-github-ti-jiao-de-ji-ge-can-kao-lian-jie/</id>
+        <link href="https://434308421.github.io/post/guan-yu-github-ti-jiao-de-ji-ge-can-kao-lian-jie/">
+        </link>
+        <updated>2020-05-19T16:04:25.000Z</updated>
+        <content type="html"><![CDATA[<p>使用方法：</p>
+<p><a href="https://www.it1352.com/720442.html">查看使用方法一</a><br>
+<a href="https://www.baidu.com/link?url=4VBEPxKD209pzBGcJEo9SDCkAtRoiZQTJzgoL-WKND5qHr5GGUPJAiAFAGuwkpuByZYLCD858sZNxgflQicuncLY_g1e8HXS1ffporV-YZi&amp;wd=&amp;eqid=bcada90e000118e4000000045ebc2db3">查看使用方法二</a><br>
+<a href="https://www.jianshu.com/p/80e0e1058bda?open_source=weibo_search">查看使用方法三</a><br>
+<a href="https://cungudafa.gitee.io/post/adab.html">查看使用方法四</a><br>
+<a href="http://cpanel.byethost.com/panel/indexpl.php">查看使用方法五</a><br>
+<a href="https://dmx.pub/posts/59b4d1ff.html">查看使用方法六</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[JetBrains IntelliJ IDEA Ultimate 2020.1中文版]]></title>
+        <id>https://434308421.github.io/post/jetbrains-intellij-idea-ultimate-20201-zhong-wen-ban/</id>
+        <link href="https://434308421.github.io/post/jetbrains-intellij-idea-ultimate-20201-zhong-wen-ban/">
+        </link>
+        <updated>2020-05-19T16:03:48.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="the-start"><strong>THE START</strong></h2>
+<p><strong>更新JetBrains IntelliJ IDEA Ultimate 2020.1 ，此版本官方提供汉化插件！</strong></p>
+<p>JetBrains IntelliJ IDEA是使用Java语言的智能、功能强大且集成的软件开发工具。但是，此IDE不仅限于Java支持，还支持从Web设计语言到数据库和移动应用程序的各种编程语言和框架。该程序的高智能性为程序编写者提高编码的速度和准确性提供了极大的帮助。</p>
+<h2 id="软件说明">软件说明</h2>
+<ul>
+<li>本分享只做学习研究之用，不得用于商业用途！</li>
+<li>享受更优质服务，请点击 [<a href="https://link.zhihu.com/?target=https%3A//www.jetbrains.com/idea/buy/">https://www.jetbrains.com/idea/buy/</a>] 购买正版，谢谢合作！</li>
+<li>学生凭学生证可免费申请 [<a href="https://link.zhihu.com/?target=https%3A//sales.jetbrains.com/hc/zh-cn/articles/207154369-">https://sales.jetbrains.com/hc/zh-cn/articles/207154369-</a>学生授权申请方式] 正版授权！</li>
+<li>创业公司可5折购买 [<a href="https://link.zhihu.com/?target=https%3A//www.jetbrains.com/shop/eform/startup">https://www.jetbrains.com/shop/eform/startup</a>] 正版授权！</li>
+</ul>
+<h2 id="功能概述">功能概述</h2>
+<ul>
+<li>检测代码并帮助智能完成高级分析</li>
+<li>能够在集成环境中编辑和开发不同的编程语言代码</li>
+<li>支持最基本和最重要的Web标准和框架，例如Spring MVC，GWT，Vaadin，Grails，JSF，Struts，Flex和…以及Web语言，例如HTML，CSS，SASS，LESS，JavaScript，CoffeeScript，Node.js，ActionScript</li>
+<li>包括用于编辑各种数据库（例如PostgreSQL，MySQL，Oracle，SQL Server）的完整工具</li>
+<li>在Android平台下开发移动应用程序，包括用户界面设计和程序优化</li>
+<li>支持适用于Android和iOS的Adobe AIR技术</li>
+<li>具有版本控制工具</li>
+<li>具有各种插件以增强功能并优化编程环境</li>
+</ul>
+<h2 id="安装要求">安装要求</h2>
+<ul>
+<li>Microsoft Windows 10、8的64位版本</li>
+<li>GNOME或KDE桌面</li>
+<li>最低2 GB RAM，建议8 GB RAM</li>
+<li>2.5 GB硬盘空间，建议使用SSD</li>
+<li>最低1024×768屏幕分辨率</li>
+</ul>
+<h2 id="软件安装">软件安装</h2>
+<p>1.右键以管理员身份运行</p>
+<figure data-type="image" tabindex="1"><img src="https://pic3.zhimg.com/80/v2-8b1ff8113cc602e55e168042d3afdb16_720w.jpg" alt="img" loading="lazy"></figure>
+<p>2.点击next</p>
+<figure data-type="image" tabindex="2"><img src="https://pic3.zhimg.com/80/v2-9bf52eac673968c791ab81b72af9cc86_720w.jpg" alt="img" loading="lazy"></figure>
+<p>3.修改或默认安装目录，点击next</p>
+<figure data-type="image" tabindex="3"><img src="https://pic4.zhimg.com/80/v2-bb59baf665c7745ac5b0e63d0e21e68b_720w.jpg" alt="img" loading="lazy"></figure>
+<p>4.根据系统及需要勾选，点击next</p>
+<figure data-type="image" tabindex="4"><img src="https://pic4.zhimg.com/80/v2-48a5331dc066576e46148820203c4f7b_720w.jpg" alt="img" loading="lazy"></figure>
+<p>5.点击install</p>
+<figure data-type="image" tabindex="5"><img src="https://pic3.zhimg.com/80/v2-b5f4a25708b5712c70207a4816229836_720w.jpg" alt="img" loading="lazy"></figure>
+<p>6.开始安装，耐心等待</p>
+<figure data-type="image" tabindex="6"><img src="https://pic2.zhimg.com/80/v2-ce4d0486696242e324e53b1e5ea77365_720w.jpg" alt="img" loading="lazy"></figure>
+<p>7.勾选取消运行，点击finish</p>
+<p>8.重新打开软件</p>
+<p>9.跳过设置</p>
+<figure data-type="image" tabindex="7"><img src="https://pic2.zhimg.com/80/v2-dbb8a902392e443725d743558399da55_720w.jpg" alt="img" loading="lazy"></figure>
+<p>10.点击evaluate for free ---evaluate</p>
+<figure data-type="image" tabindex="8"><img src="https://pic3.zhimg.com/80/v2-321b72af80e02fa77a159bbe089252aa_720w.jpg" alt="img" loading="lazy"></figure>
+<p>11.打开crack文件夹</p>
+<p>打开jetbrains-agent-latest---jetbrains-agent---lib文件夹</p>
+<p>将jetbrains-agent.jar文件拖进对话框，弹出提示，点击restart</p>
+<figure data-type="image" tabindex="9"><img src="https://pic1.zhimg.com/80/v2-a5bb532cc053fbcd4432cdbe06eec9d8_720w.jpg" alt="img" loading="lazy"></figure>
+<p>12.选择activation code 点击为IDEA安装</p>
+<figure data-type="image" tabindex="10"><img src="https://pic1.zhimg.com/80/v2-0b9fe03c93a01b62cd6a8c836d61704c_720w.jpg" alt="img" loading="lazy"></figure>
+<p>13.点击是</p>
+<figure data-type="image" tabindex="11"><img src="https://pic1.zhimg.com/80/v2-59aacd762cf35be8e11bf89e54d4ec00_720w.jpg" alt="img" loading="lazy"></figure>
+<p>14.查看激活状态</p>
+<p>点击configure---manage license</p>
+<figure data-type="image" tabindex="12"><img src="https://pic4.zhimg.com/80/v2-59c1b388036ddf6701ceb424cde9ee3f_720w.jpg" alt="img" loading="lazy"></figure>
+<p>订阅到2089年到期</p>
+<figure data-type="image" tabindex="13"><img src="https://pic2.zhimg.com/80/v2-5170d9f948ea94e7d6039240ba01da9d_720w.jpg" alt="img" loading="lazy"></figure>
+<p>15.修改界面语言</p>
+<p>2020.1版本自身带有中文版插件，安装后即可使用中文版</p>
+<p>再次点击configure---plugins</p>
+<figure data-type="image" tabindex="14"><img src="https://pic2.zhimg.com/80/v2-568d1a52652e3ee527bcda23a70d7395_720w.jpg" alt="img" loading="lazy"></figure>
+<p>搜索框输入Chinese，点击install，完成后点击restart即可</p>
+<figure data-type="image" tabindex="15"><img src="https://pic2.zhimg.com/80/v2-4287f8c19ec56b27d40dfa5a3d52cf6d_720w.jpg" alt="img" loading="lazy"></figure>
+<p>界面变为中文</p>
+<figure data-type="image" tabindex="16"><img src="https://pic4.zhimg.com/80/v2-c05dd53699e188eeb4142a1a9df2f2bb_720w.jpg" alt="img" loading="lazy"></figure>
+<p>面板部分基本全部汉化</p>
+<figure data-type="image" tabindex="17"><img src="https://pic3.zhimg.com/80/v2-abe6248e1d42ad6ee7a0ccf3bfb559de_720w.jpg" alt="img" loading="lazy"></figure>
+<h2 id="软件说明-2">软件说明</h2>
+<ul>
+<li>本项目只做学习研究之用，不得用于商业用途！</li>
+<li>若资金允许，请点击 [<a href="https://link.zhihu.com/?target=https%3A//www.jetbrains.com/idea/buy/">https://www.jetbrains.com/idea/buy/</a>] 购买正版，谢谢合作！</li>
+<li>学生凭学生证可免费申请 [<a href="https://link.zhihu.com/?target=https%3A//sales.jetbrains.com/hc/zh-cn/articles/207154369-">https://sales.jetbrains.com/hc/zh-cn/articles/207154369-</a>学生授权申请方式] 正版授权！</li>
+<li>创业公司可5折购买 [<a href="https://link.zhihu.com/?target=https%3A//www.jetbrains.com/shop/eform/startup">https://www.jetbrains.com/shop/eform/startup</a>] 正版授权！</li>
+</ul>
+<blockquote>
+<p>引用自：<a href="https://zhuanlan.zhihu.com/p/137715660">JetBrains IntelliJ IDEA Ultimate 2020.1中文版</a><br>
+链接：<br>
+链接：https://pan.baidu.com/s/1lfkVHNkDtcdrotcxh7EEdQ<br>
+提取码：4dx9<br>
+复制这段内容后打开百度网盘手机App，操作更方便哦</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[记一次增加博客引导界面的坎坷]]></title>
+        <id>https://434308421.github.io/post/ji-yi-ci-zeng-jia-bo-ke-yin-dao-jie-mian-de-kan-ke/</id>
+        <link href="https://434308421.github.io/post/ji-yi-ci-zeng-jia-bo-ke-yin-dao-jie-mian-de-kan-ke/">
+        </link>
+        <updated>2020-05-19T16:02:46.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="先说一下真的是万分坎坷">先说一下，真的是万分坎坷！！！</h1>
+<h2 id="1按照下列方法修改即可">1.按照下列方法修改即可</h2>
+<p><a href="https://www.jianshu.com/p/80e0e1058bda?open_source=weibo_search">Hexo自定义页面做首页</a></p>
+<h2 id="2提交分支用这个">2.提交分支用这个</h2>
+<p><a href="https://blog.csdn.net/weixin_41250910/article/details/94630383">如何将本地的文件夹整体上传到Github上</a></p>
+<p><a href="https://www.it1352.com/720442.html">关于 “git push 远程仓库名 本地分支:远程分支” </a></p>
+<p><a href="https://blog.csdn.net/henusyb/article/details/89385386">error: failed to push some refs to 'https://github.com/xxxx.git'</a></p>
+<p>参考链接：</p>
+<p><a href="https://www.it1352.com/720442.html">参考一</a></p>
+<p><a href="https://www.baidu.com/link?url=4VBEPxKD209pzBGcJEo9SDCkAtRoiZQTJzgoL-WKND5qHr5GGUPJAiAFAGuwkpuByZYLCD858sZNxgflQicuncLY_g1e8HXS1ffporV-YZi&amp;wd=&amp;eqid=bcada90e000118e4000000045ebc2db3">参考二</a></p>
+<p><a href="https://www.jianshu.com/p/80e0e1058bda?open_source=weibo_search">参考三</a></p>
+<p><a href="https://cungudafa.gitee.io/post/adab.html">参考四</a></p>
+<p><a href="http://cpanel.byethost.com/panel/indexpl.php">参考五</a></p>
+<p><a href="https://dmx.pub/posts/59b4d1ff.html">参考六</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Markdown文档写作利器套装：Typora+PicGo+GitHub]]></title>
+        <id>https://434308421.github.io/post/markdown-wen-dang-xie-zuo-li-qi-tao-zhuang-typorapicgogithub/</id>
+        <link href="https://434308421.github.io/post/markdown-wen-dang-xie-zuo-li-qi-tao-zhuang-typorapicgogithub/">
+        </link>
+        <updated>2020-05-19T16:02:02.000Z</updated>
+        <content type="html"><![CDATA[<p>当我开始利用一些碎片时间，整理记录自己的工作经验、心得、想法并在一些内容网站进行分享的时候，我想找到几个好用的功具，满足以下几个码字需求：</p>
+<ol>
+<li>在电脑本地编辑（不太习惯直接在网站后台编辑文章，存草稿），但同时可以在家里和公司的电脑上同步；</li>
+<li>文章中用到的图片可以方便地上传到图床，文章中自动插入图片链接；</li>
+<li>本地文件的内容直接复制并粘贴到网站后台时，样式保持不变，图片不需要重新上传；</li>
+<li>文章中有程序代码的段落可以用流行的代码样式进行排版；</li>
+</ol>
+<p>与使用Word文档不同，我希望的是更易在网上分享的写作工具，（word/WPS)图文排版功能虽然强大，但并不适合在网站上分享。如果你尝试过把一篇图文WORD文档复制到网站的编辑器后台去，你会发现这个过程并不令人愉快。然而纯文本又少了格式化的能力，用纯文本写文章，就象在盖毛坯房。在线的HTML富文本编辑器好象还可以，不过我的确不太喜欢在线编辑。因为有时候，我带儿子去上课，在他上课的时候我带着笔记本电脑干点儿自己的事情，商场的免费WIFI好象还不是很靠谱，导致我只能开手机热点连网。</p>
+<p>经过了一段时间的探索和学习，最后找到了<strong>Typora+PicGo+GitHub+微信同步盘</strong>的方式作为工具，满足了上面我自己想要实现的4个需求。</p>
+<p>对PHP程序员，或者很多其它语言的程序员来说，对Markdown格式应该都不陌生了，但对于非IT人员，也许还真的不是很了解它。就我的使用感来说，只要是有写作需求的人，都适合用Markdown，强烈推荐！</p>
+<p>以下是【维基百科中】Markdown词条的内容摘录，详情可访问地址：</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Markdown">https://zh.wikipedia.org/wiki/Markdownzh.wikipedia.org</a></p>
+<blockquote>
+<p>John Gruber在2004年创造了Markdown语言，在语法上有很大一部分是跟<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8">亚伦·斯沃茨</a>（Aaron Swartz）共同合作的。从2012年开始，包括Jeff Atwood和John MacFarlane在内的一群人启动了标准化工作。[<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Markdown%23cite_note-FutureOfMarkdown-18">18]</a>一个社区网站现在旨在记录可用于文档作者和开发人员的各种工具和资源，以及各种markdown实现的实现者。[<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Markdown%23cite_note-19">19]</a> 2014年9月，Gruber反对在这一工作中继续使用“Markdown”这个名字，其被更名为CommonMark。[<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Markdown%23cite_note-20">20]</a>[<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Markdown%23cite_note-21">21]</a><a href="https://link.zhihu.com/?target=http%3A//CommonMark.org">http://CommonMark.org</a>发布了规范、参考实现和测试包的几个版本，并计划在2018年宣布最终的1.0规范和测试包。[<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Markdown%23cite_note-commonmark.org-22">22]</a></p>
+</blockquote>
+<p>简单说来Markdown 是一种轻量级标记语言，它允许人们“使用易读易写的<a href="https://link.zhihu.com/?target=https%3A//www.baidu.com/s%3Fwd%3D%E7%BA%AF%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F%26tn%3DSE_PcZhidaonwhc_ngpagmjz%26rsv_dl%3Dgh_pc_zhidao">纯文本格式</a>编写文档知，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件道中已有的纯文本标记的特性。由于Markdown的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，当前许多网站都广泛使用Markdown来撰写帮助文档或是用于<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E8%AE%BA%E5%9D%9B">论坛</a>上发表消息。如<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/GitHub">GitHub</a>、<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Reddit">Reddit</a>、<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Diaspora">Diaspora</a>、<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/Stack_Exchange">Stack Exchange</a>、<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/OpenStreetMap">OpenStreetMap</a> 、<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/SourceForge">SourceForge</a>、<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/%E7%AE%80%E4%B9%A6">简书</a>、<a href="https://link.zhihu.com/?target=https%3A//www.csdn.net/">CSDN</a>、<a href="https://www.zhihu.com/">知乎</a>等，甚至还能被使用来撰写<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/%E9%9B%BB%E5%AD%90%E6%9B%B8">电子书</a>。花点时间学习和掌握Markdown格式是件非常值得的事。</p>
+<p>关于Markdown的语法，网上简直太多了，大多是转来转去，就不搬了，如果是初次接触，可以参考菜鸟教程网站的教程：</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程www.runoob.com<img src="https://pic4.zhimg.com/v2-e609e600d2c78b542591448c17415367_ipico.jpg" alt="图标" loading="lazy"></a></p>
+<p><img src="https://pic2.zhimg.com/80/v2-4491123f81ba77af6949034499346d49_720w.jpg" alt="img" loading="lazy">Markdown教程</p>
+<p>接下来转入正题，即然要写Markdown文档，就得有个工具啊，windows下写作Markdown的工具当然也有很多，但被推荐最多的非Typora莫属了，此刻我就是在用Typora 勤勤恳恳地码着字。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic1.zhimg.com/80/v2-fa2977cadc8e593beb5d0f726b36564c_720w.jpg" alt="img" loading="lazy"></figure>
+<p>Typora 是所见即所得的Markdown编辑工具，可以做到让我们在写作时专心于内容的创作，而非不必受到其它额外的设置方面的打扰。（关于Typora的使用介绍，也可以百度到大把资料，就不再搬运了）</p>
+<p>接下来解决图片上传的问题，我希望的效果是，在写作的时候遇到需要插入图片的地方，可以直接把图片拖进来，图片可以直接上传到一个图床中，并生成一个图片链接返回到文章中，这时文章中的图片就是网络图片而不是本地图片了，再往线上搬运的时候会方便很多，这对于Typora编辑器来说也是轻而一举的事情。</p>
+<p>在Typora的最新版本中，已经包含了对于PicGo 的支持，可以利用PicGo将本地图片上传至图床服务器，包括直接上传粘贴板的图片，这一功能是很有用的，比如我们的截图，不必先另存到电脑再上传，而是可以直接上传到图床中。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-b030f4dba2e21b73739ffd3ea1d0e5b8_720w.jpg" alt="img" loading="lazy">Typora中的图像设置</p>
+<p>Typora对于PicGo的集成支持有两种方式：PicGo-core，PicGo app，任选其一就行。当我使用上面界面中的【下截PicGo(app)功能的时候，始终无法下载成功（肯定是DNS污染的原因）。所以手动下载并安装了PicGo，地址如下：</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//github.com/Molunerfinn/PicGo/releases">Molunerfinn/PicGogithub.com<img src="https://pic2.zhimg.com/v2-4f493a86add99fc7cbb0f72398b2353d_180x120.jpg" alt="图标" loading="lazy"></a></p>
+<p><img src="https://pic4.zhimg.com/80/v2-bca15bdcfe0a79e3250a01c89eb9e2eb_720w.jpg" alt="img" loading="lazy">PicGo下载</p>
+<p>下载并安装完成后，运行程序，配置一下图床。目前一共支持8种图床接口，总有一款适合你。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-989a90dc2abd98650cb1a8dd6bc10a6b_720w.jpg" alt="img" loading="lazy">PicGo设置</p>
+<p>关于图床的选择，萝卜白菜各有所爱，我感觉没什么特别值得对比的，我用了GitHub做图床(最大的好处是免费吧，哈哈哈)，GitHub做为图床的操作流程基本上是：注册一个GitHub帐号-》建个仓-》创建一个用于存图片的文件夹-》生成一个Token。上面的步骤操作完成后，在PicGo中进行一下配置：</p>
+<ul>
+<li>设定仓库名：按照【用户名 / 图床仓库名】的格式填写，此处要注意的是仓库名只需要填写GitHub上的 <strong>用户名/仓库名</strong> 就行了，不需要填写前面的 <a href="https://link.zhihu.com/?target=https%3A//github/">https://github</a>........... 那一长串东西。</li>
+<li>设定分支名：【master】</li>
+<li>设定Token：粘贴在GitHub中成的【Token】（关于GitHubToken的生成，网上也很容易找到，不再搬运了）</li>
+<li>指定存储路径：填写想要储存的路径，如【image/】，这样就会在仓库下创建一个名为image的文件夹，图片将会储存在此文件夹中</li>
+<li>设定自定义域名：它的作用是，在图片上传后，PicGo会按照【自定义域名+储存路径+上传的图片名】的方式生成访问链接，放到粘贴板上。为什么要设置它呢？你试一下就知道了，很可能原始的图片链接地址是无法访问的，所以我们要利用自定义域名，生成一个CDN加速的图片地址。<br>
+比如我们使用 jsDelivr 加速访问，所以可以设置为【<a href="https://link.zhihu.com/?target=https%3A//cdn.jsdelivr.net/gh/">https://cdn.jsdelivr.net/gh/</a>用户名/图床仓库名 】，这时等图片上传完毕后，返回的图片地址就是【<a href="https://link.zhihu.com/?target=https%3A//cdn.jsdelivr.net/gh/">https://cdn.jsdelivr.net/gh/</a>用户名/图床仓库名/图片路径】经测试不会存在打不开的情况了。比如下图的地址就是：<a href="https://link.zhihu.com/?target=https%3A//cdn.jsdelivr.net/gh/prajna000/note/image/20200516181739.png">https://cdn.jsdelivr.net/gh/prajna000/note/image/20200516181739.png</a></li>
+</ul>
+<p><img src="https://pic3.zhimg.com/80/v2-2d02db93b364b00ed4b7d85e7ef2d51a_720w.jpg" alt="img" loading="lazy">PicGo中的GitHub设置</p>
+<p>这部分设置完毕，就可以体验使用Typora时流畅顺滑的写作感了。Typora还有个好处，在右下角可以随时看到已经码了多少字。哈哈哈，如果让我上小学四年级的儿子知道，用这个来写作文，那肯定不用边写边数字数是不是够了300字啊。</p>
+<p>最后一个需求，要实现在不同的电脑上同步，这个比较好解决，用同步盘就行。国外最有名的就属DropBox了，国内曾经最好用的快盘已经不存在了，我一直在用的是微云同步盘，很稳定（说真心话实在不太理解还有人用U盘在不同的电脑上把文件拷来拷去，马上5G都普及了，咱还不得与时俱进么：）</p>
+<p>好了，这篇介绍到此结束，是我选择写作工具的一点心得。工欲善其事、必先利其器，这话没错！！！</p>
+<p>如果您在每天无数的信息阅读中读到了此文，那真是500年注定的缘分，如果您耐心读到了文末，那大概花了您宝贵的5分钟时间，如果此文正巧对您有用，请轻点屏幕给个赞吧！如果发现文中有什么问题，也请留言，不吝赐教！</p>
+<blockquote>
+<p>引用自：<a href="https://zhuanlan.zhihu.com/p/141445396">Markdown文档写作利器套装：Typora+PicGo+GitHub</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mr.Otter——丰富来源，明白搜索]]></title>
+        <id>https://434308421.github.io/post/mrotter-feng-fu-lai-yuan-ming-bai-sou-suo/</id>
+        <link href="https://434308421.github.io/post/mrotter-feng-fu-lai-yuan-ming-bai-sou-suo/">
+        </link>
+        <updated>2020-05-19T16:01:26.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>引用自：<a href="http://xlrocket.com/mrotter/">Mr.Otter官网</a><br>
+教程：<a href="https://www.jianshu.com/p/e80a314f723a">搜配图 / 找灵感， Mr. Otter 一站式搞定！</a></p>
+</blockquote>
+]]></content>
+    </entry>
+</feed>
